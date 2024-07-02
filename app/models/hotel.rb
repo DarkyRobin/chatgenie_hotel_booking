@@ -1,6 +1,8 @@
 class Hotel < ApplicationRecord
-  belongs_to :contact, class_name: 'HotelContact'
-  belongs_to :amenities, class_name: 'Amenity'
+  has_many :contacts, class_name: 'HotelContact', dependent: :destroy
+  has_many :amenities, class_name: 'Amenity', dependent: :destroy
   has_many :rooms
   has_many :reviews
+
+  validates :name, :description, :location, presence: true
 end

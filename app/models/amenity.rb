@@ -1,3 +1,5 @@
 class Amenity < ApplicationRecord
-  has_many :hotels, foreign_key: 'amenities_id'
+  belongs_to :hotel
+  
+  validates :amenity_title, :description, presence: true
 end

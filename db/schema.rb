@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_02_073946) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_02_101419) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_073946) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "hotel_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -38,18 +39,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_073946) do
     t.string "contact_details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "hotel_id"
   end
 
   create_table "hotels", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.string "location"
-    t.bigint "hotel_contact_id", null: false
-    t.bigint "amenity_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["amenity_id"], name: "index_hotels_on_amenity_id"
-    t.index ["hotel_contact_id"], name: "index_hotels_on_hotel_contact_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -104,8 +102,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_073946) do
 
   add_foreign_key "bookings", "rooms"
   add_foreign_key "bookings", "users"
-  add_foreign_key "hotels", "amenities"
-  add_foreign_key "hotels", "hotel_contacts"
   add_foreign_key "reviews", "hotels"
   add_foreign_key "reviews", "users"
   add_foreign_key "rooms", "hotels"
