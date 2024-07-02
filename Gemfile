@@ -69,3 +69,4 @@ end
 gem 'bootstrap', '~> 5.1.0'
 gem 'devise'
 gem 'simple_form'
+gem 'bcrypt', '~> 3.1.7'
